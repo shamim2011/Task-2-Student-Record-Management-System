@@ -45,78 +45,145 @@ Collections.sort(list, (a, b) -> a.getName().compareTo(b.getName()));
 
 
 
-***4.What are the basic data types in Java?***  
+***4.What is constructor overloading?***  
 **Ans**   
-In Java, the basic (or primitive) data types are:
+Constructor overloading in Java means defining multiple constructors in a class with different parameter lists.  
+🔹 Key Points:  
+Same constructor name (ClassName), but different number or types of parameters.  
+Helps in initializing objects in different ways. 
+class Student {  
+    int id;  
+    String name;  
 
-byte – 8-bit signed integer (range: -128 to 127)  
-short – 16-bit signed integer (range: -32,768 to 32,767)  
-int – 32-bit signed integer (range: -2,147,483,648 to 2,147,483,647)  
-long – 64-bit signed integer (range: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)  
-float – 32-bit floating point number (single precision)  
-double – 64-bit floating point number (double precision)  
-char – 16-bit Unicode character (range: '\u0000' to '\uffff')  
-boolean – represents true or false values  
-***5.How is Scanner used for input?***  
+    // Constructor 1  
+    Student() {  
+        id = 0;  
+        name = "Unknown";  
+    }  
+
+    // Constructor 2  
+    Student(int id) {  
+        this.id = id;  
+        name = "Unknown";  
+    }  
+
+    // Constructor 3  
+    Student(int id, String name) {   
+        this.id = id;  
+        this.name = name;  
+    }   
+}  
+
+***5.How does garbage collection work in Java?***  
 **Ans**  
-Scanner scanner = new Scanner(System.in); creates a scanner to read input from the keyboard.  
-Methods like nextInt() and nextLine() read different types of input.  
-Always close the scanner with scanner.close(); when done.  
-***6.Explain the role of a loop.***  
+Garbage Collection in Java (Short Explanation):  
+In Java, Garbage Collection (GC) is the process of automatically identifying and removing unused (unreachable) objects from memory (heap) to free up space and avoid memory leaks.  
+Key Points:  
+Java uses an automatic garbage collector, so developers don’t need to manually free memory.  
+An object becomes eligible for GC when no live thread can access it (i.e., no references to it).  
+GC mainly works in the heap memory.  
+JVM uses algorithms like Mark and Sweep, Generational GC, and G1 GC.  
+Student s = new Student(); // Object created  
+s = null; // Now eligible for GC  
+
+***6.Why do we use getters and setters?***   
 **Ans**  
-🔁 Role of a Loop in Java
-A loop in Java is used to execute a block of code repeatedly as long as a specified condition is true.  
-It helps reduce code duplication and makes programs more efficient and dynamic.  
-✅ Why Use Loops?  
-To repeat tasks automatically  
+Getters and setters in Java are used to:  
+Encapsulate data – They hide the internal representation of the object.  
+Control access – You can make a field private and expose it safely through getters/setters.  
+Add validation logic – Setters can include checks before assigning a value.  
+Improve maintainability – Internal field names/types can change without affecting external code.  
+Enable read-only or write-only access – By omitting either the getter or setter.  
 
-To iterate over arrays, lists, or collections  
 
-To process input/output continuously  
+private int age;  
+public int getAge() {  
+    return age;  
+}  
 
-To perform tasks like searching, counting, etc.  
-for loop -> When the number of iterations is known  
-while loop	-> When the condition is checked before each run  
-do-while loop	-> Executes at least once, checks condition later  
-for-each loop	-> Used to traverse arrays or collections  
-***7.Difference between while and for loop?***  
+public void setAge(int age) {  
+    if(age > 0) {  
+        this.age = age;  
+    }  
+}  
+
+***7.What is a static variable?***  
 **Ans**  
-✅ Difference Between for and while Loop (Short)
-for loop is used when the number of iterations is known. All loop control (init, condition, update) is in one line.  
-while loop is used when the number of iterations is unknown, and the condition is checked before each iteration.  
-for is compact and best for counting; while is flexible and suits dynamic conditions.  
+In Java, a static variable is a variable that belongs to the class rather than to any specific object (instance).  
+✅ Key Points:  
+Declared using the static keyword.  
+Shared among all instances of the class.  
+Memory is allocated only once, when the class is loaded.  
+Accessed using the class name (e.g., ClassName.variableName).  
+
+class Example {  
+    static int count = 0; // static variable  
+
+    Example() {  
+        count++;  
+    }  
+}  
+
+public class Main {  
+    public static void main(String[] args) {  
+        new Example();  
+        new Example();  
+        System.out.println(Example.count); // Output: 2  
+    }  
+}  
 
 
-***8.What is the JVM?***  
+***8.What is the use of final keyword?***  
 **Ans**  
-✅ JVM (Java Virtual Machine) – Short Definition  
-The JVM (Java Virtual Machine) is a part of the Java Runtime Environment (JRE) that executes Java bytecode.  
-It allows Java programs to run independently of the underlying hardware and OS (i.e., Write Once, Run Anywhere).  
-🔧 Key Roles of JVM:  
-Loads and verifies .class files (bytecode)  
-Executes bytecode line by line  
-Manages memory (Garbage Collection)  
-Ensures security and portability  
-***9.How is Java platform-independent?***  
-**Ans**  
-✅ Why Java is Platform-Independent (Short)  
-Java is platform-independent because Java code is compiled into bytecode, which is not specific to any platform.  
-This bytecode runs on the Java Virtual Machine (JVM), and since each platform (Windows, Linux, Mac) has its own JVM implementation, the same Java program can run anywhere the JVM is installed.  
+In Java, the final keyword is used to restrict modification. Its meaning depends on where it's used:  
+Final variable: Value cannot be changed (like a constant).  
+final int x = 10;  
+x = 20; // Error  
 
-🧠 Key Phrase:  
-"Write Once, Run Anywhere" — thanks to bytecode and JVM.  
-***10.How do you debug a Java program?***  
+Final method: Method cannot be overridden by subclasses.  
+class A {  
+    final void show() {}  
+}  
+
+class B extends A {  
+    void show() {} // Error  
+}  
+
+Final class: Class cannot be extended.  
+final class A {}  
+
+class B extends A {} // Error  
+
+
+***9..Difference between compile-time and runtime errors?***  
 **Ans**  
-✅ How to Debug a Java Program (Short)  
-Use Print Statements  
-Insert System.out.println() to check variable values and flow.  
-Use an IDE Debugger (like IntelliJ or Eclipse)  
-Set breakpoints  
-Step through code (Step Into, Step Over)  
-Inspect variables, call stack, and watch expressions  
-Use Exception Messages  
-Read stack traces to locate the exact error line.  
-Use Logging  
-Replace prints with logging (java.util.logging, Log4j) for better control.  
-Test in Small Parts  
-Break code into methods and test individually (unit testing).  
+Difference between Compile-time and Runtime Errors in Java (Short):  
+
+Aspect ->	Compile-time Error	-> Runtime Error  
+When Occurs	-> During code compilation	-> During program execution  
+Detected By	-> Compiler	-> JVM (Java Virtual Machine)  
+Examples	-> Syntax errors, missing semicolon, type mismatch	-> Division by zero, null pointer exception  
+Fixing	-> Must be fixed before code runs	-> May not be noticed until specific input/scenario  
+
+Summary:  
+Compile-time errors stop the program from compiling.  
+Runtime errors occur while the program is running.   
+***10.What are access modifiers?***  
+**Ans**  
+In Java, access modifiers are keywords used to set the visibility or access level of classes, methods, variables, and constructors.  
+
+Four Main Access Modifiers:  
+
+Modifier	Access Level  
+
+public	-> Accessible from anywhere  
+protected	-> Accessible within the same package and subclasses (even in different packages)  
+(default)	-> Accessible only within the same package (no modifier)  
+private	-> Accessible only within the same class  
+
+public class Example {  
+    public int a;        // accessible everywhere  
+    protected int b;     // accessible in same package + subclasses  
+    int c;               // default access (package-private)  
+    private int d;       // accessible only inside this class  
+}  
