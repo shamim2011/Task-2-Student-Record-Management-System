@@ -8,64 +8,42 @@
 ### Interview Questions:
 
 ***1.What is encapsulation?***  
-**Ans:**  ✅ Method Overloading in Java
-Method Overloading is a feature in Java that allows a class to have more than one method with the same name, as long as their parameter lists are different (either in number, type, or order of parameters).
+**Ans:**  Encapsulation in Java is the concept of wrapping data (variables) and code (methods) together as a single unit, typically inside a class, and restricting direct access to some of the object's components.  
+Key Points:  
+Achieved using private variables and public getters/setters.  
+Ensures data hiding and security.  
+Helps in maintaining control over the data.  
+✅ In short: Encapsulation = data hiding + access control via methods.  
 
-🔍 Key Points:
-It improves code readability and reusability.
-
-It happens at compile time → also called Compile-Time Polymorphism or Static Polymorphism.
-
-Return type can be different, but it alone can't be used to overload a method.
-
-✅ How Can Methods Be Overloaded?
-By changing the number of arguments
-
-By changing the data type of arguments
-
-By changing the order of arguments (if types are different)
-
-***2.How do you handle divide-by-zero?***  
-**Ans**  1. Using if check (for integers or doubles)
-if (denominator != 0) {
-    int result = numerator / denominator;
-} else {
-    System.out.println("Cannot divide by zero.");
-}
-2. Using try-catch block (for integers)
-try {
-    int result = num1 / num2;
-} catch (ArithmeticException e) {
-    System.out.println("Error: Division by zero is not allowed.");
-}
-📝 Note: ArithmeticException is only thrown for integer division, not for double division.
-
-3. For double values
-No exception is thrown, but result is:
-
-Infinity if divided by 0.0
-
-NaN (Not a Number) if 0.0 / 0.0
-
-double result = 10.0 / 0.0;   // result = Infinity
+***2..How are ArrayLists different from arrays?***  
+**Ans**  Feature ->	Array	-> ArrayList  
+Size	-> Fixed (set at creation)	-> Dynamic (resizable)  
+Type	-> Can hold primitives & objects	-> Can hold only objects  
+Syntax	-> int[] arr = new int[5];	-> ArrayList<Integer> list = new ArrayList<>();  
+Performance	-> Faster for fixed-size data	-> Slower due to dynamic resizing  
+Methods	-> No built-in methods for insert/delete	-> Many methods like add(), remove(), etc.  
+Import Needed	-> No	-> Yes (java.util.ArrayList)  
 
 
-***3.Difference between == and .equals()?***  
+***3.How to sort an ArrayList?***  
 **Ans**  
-Use == for:
+✅ Example: Sorting in ascending order  
+import java.util.*;
 
-Comparing primitive types
+public class SortExample {  
+    public static void main(String[] args) {  
+        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(5, 2, 8, 1, 3));  
+        Collections.sort(list);  
+        System.out.println(list); // Output: [1, 2, 3, 5, 8]  
+    }  
+}  
+✅ Descending order:  
+Collections.sort(list, Collections.reverseOrder());  
+✅ For custom objects:  
+Use a Comparator:  
+Collections.sort(list, (a, b) -> a.getName().compareTo(b.getName()));  
 
-Checking if two object references point to the same object  
 
-Use .equals() for:  
-
-Comparing values/content of two objects
-String a = new String("Java");
-String b = new String("Java");
-
-System.out.println(a == b);        // false (different objects)
-System.out.println(a.equals(b));   // true  (same content)
 
 ***4.What are the basic data types in Java?***  
 **Ans**   
