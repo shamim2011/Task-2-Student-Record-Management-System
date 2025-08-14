@@ -1,4 +1,4 @@
-### 💡 What it Does:
+ ### 💡 What it Does:
  ⨀ Uses a Student class with private fields and getter/setter methods.  
  ⨀ Stores all records in an ArrayList<Student>.  
  ⨀ Provides a loop-driven console menu for user interaction.  
